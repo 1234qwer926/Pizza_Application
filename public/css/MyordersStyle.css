@@ -1,0 +1,29 @@
+h2{
+    text-align: center;
+}
+
+a{
+    text-decoration: none;
+    border-radius: 5px;
+    border: 2px solid black;
+    padding: 5px;
+    margin-left: 5px;
+    margin-top: 10px;
+    background-color: white;
+    color: black;
+}
+a:hover{
+    background-color: black;
+    color: white;
+}
+li{
+    margin: 20px;
+    padding: 10px;
+    list-style-type: none;
+}
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

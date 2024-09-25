@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/ExploreStyle.css">
+    <title>Explore Pizzas</title>
+</head>
+<body>
+    <h2>Explore Pizzas</h2>
+    <div class="pizza-list">
+        <% pizzas.forEach(pizza => { %>
+            <div class="pizza-card">
+                <h3><%= pizza.name %></h3>
+                <img src="<%= pizza.url %>" alt="">
+                <p>Price: ₹<%= pizza.price %></p>
+                <form action="/addToCart" method="POST">
+                    <input type="hidden" name="pizzaId" value="<%= pizza._id %>">
+                    <button type="submit">Add to Cart</button>
+                </form>
+            </div>
+        <% }) %>
+    </div>
+
+    <h3>Create Your Customized Pizza</h3>
+    <form action="/addToCart" id="custom" method="POST">
+        <input type="hidden" name="customPizza" value="true">
+        <label for="base">Select Base:</label>
+        <select name="base" required>
+            <option value="Thin Crust">Thin Crust</option>
+            <option value="Thick Crust">Thick Crust</option>
+            <option value="Stuffed Crust">Stuffed Crust</option>
+            <option value="Gluten-Free Crust">Gluten-Free Crust</option>
+            <option value="Cauliflower Crust">Cauliflower Crust</option>
+        </select>
+        
+        <label for="sauce">Select Sauce:</label>
+        <select name="sauce" required>
+            <option value="Tomato Sauce">Tomato Sauce</option>
+            <option value="BBQ Sauce">BBQ Sauce</option>
+            <option value="Alfredo Sauce">Alfredo Sauce</option>
+            <option value="Pesto Sauce">Pesto Sauce</option>
+            <option value="Olive Oil and Garlic">Olive Oil and Garlic</option>
+        </select>
+        
+        <label for="cheese">Select Cheese:</label>
+        <select name="cheese" required>
+            <option value="Mozzarella">Mozzarella</option>
+            <option value="Cheddar">Cheddar</option>
+            <option value="Parmesan">Parmesan</option>
+            <option value="Feta">Feta</option>
+            <option value="Goat Cheese">Goat Cheese</option>
+        </select>
+        
+        <label for="veggies">Select Veggies:</label>
+        <select name="veggies" multiple required>
+                <option value="Olives">Olives</option>
+                <option value="Bell Peppers">Bell Peppers</option>
+                <option value="Mushrooms">Mushrooms</option>
+                <option value="Red Onions">Red Onions</option>
+                <option value="Spinach">Spinach</option>
+        </select>
+
+        <button type="submit">Add to Cart</button>
+    </form>
+
+</body>
+</html>

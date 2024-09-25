@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Details</title>
+    <link rel="stylesheet" href="/css/AdminorderupdateStyle.css"> 
+</head>
+<body>
+    <h2>Order Details</h2>
+
+    <div>
+        <p><strong>Order ID:</strong> <%= order._id %></p>
+        <p><strong>User ID:</strong> <%= order.userId %></p>
+        <p><strong>Items:</strong></p>
+        <ul>
+            <% order.items.forEach(item => { %>
+                <li><%= item.name %> </li>
+            <% }) %>
+        </ul>
+        <p><strong>Address:</strong> <%= order.address %></p>
+        <p><strong>Amount:</strong> <%= order.amount.toFixed(2) %></p>
+        <p><strong>Payment Status:</strong> <%= order.payment ? 'Paid' : 'Pending' %></p>
+        <p><strong>Order Status:</strong> <%= order.orderStatus %></p>
+    </div>
+
+    <form action="/dashboard/orders/<%= order._id %>" method="POST">
+        <div>
+            <label for="orderStatus">Update Order Status:</label>
+            <select name="orderStatus" id="orderStatus">
+                <option value="Order Placed" <%= order.orderStatus === 'Order Placed' ? 'selected' : '' %>>Order Placed</option>
+                <option value="Order Prepared" <%= order.orderStatus === 'Order Prepared' ? 'selected' : '' %>>Order Prepared</option>
+                <option value="Order On the Way" <%= order.orderStatus === 'Order On the Way' ? 'selected' : '' %>>Order On the Way</option>
+                <option value="Order Delivered" <%= order.orderStatus === 'Order Delivered' ? 'selected' : '' %>>Order Delivered</option>
+            </select>
+        </div>
+
+        <button type="submit">Update Status</button>
+    </form>
+
+    <a href="/dashboard/orders">Back to Orders</a>
+</body>
+</html>

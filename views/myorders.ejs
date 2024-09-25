@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/MyordersStyle.css">
+    <title>My Orders</title>
+</head>
+<body>
+    <h2>My Orders</h2>
+    <ul>
+        <div>
+            <% orders.forEach(order => { %>
+                <li>
+                    Order ID: <%= order._id %> - Status: <%= order.orderStatus %>
+                    <a href="/myorders/<%= order._id %>">Track Order</a>
+                </li>
+            <% }) %>
+        </div>
+    </ul>
+</body>
+</html> 

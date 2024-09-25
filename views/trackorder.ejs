@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/TrackorderStyle.css">
+    <title>Track Order</title>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Track Order</h2>
+        
+        <div class="order-details">
+            <h3>Order ID: <span><%= order._id %></span></h3>
+            <p><strong>Delivery Address:</strong> <%= order.address %></p>
+            <p><strong>Order Status:</strong> <span class="status <%= order.orderStatus.replace(/\s+/g, '-').toLowerCase() %>"><%= order.orderStatus %></span></p>
+            <p><strong>Total Amount:</strong> ₹<%= order.amount %></p>
+        </div>
+
+        <h3>Items Ordered</h3>
+        <div class="items-container">
+            <% order.items.forEach((item, index) => { %>
+                <div class="item-card">
+                    <h4>Item <%= index + 1 %></h4>
+                    <p><strong>Name:</strong> <%= item.name %></p>
+                    <p><strong>Price:</strong> ₹<%= item.price %></p>
+                    <p><strong>Quantity:</strong> <%= item.quantity %></p>
+                </div>
+            <% }) %>
+        </div>
+    </div>
+
+</body>
+</html>

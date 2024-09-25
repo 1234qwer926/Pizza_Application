@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orders</title>
+    <link rel="stylesheet" href="/css/AdminordersStyle.css"> 
+</head>
+<body>
+    <header>
+        <h1>Orders</h1>
+        <a class="back-link" href="/dashboard">Back to Dashboard</a>
+    </header>
+    <main>
+        <table>
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>User ID</th>
+                    <th>Items</th>
+                    <th>Address</th>
+                    <th>Amount</th>
+                    <th>Order Status</th>
+                    <th>Payment Status</th>
+                    <th>Update Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (orders.length > 0) { %>
+                    <% orders.forEach(order => { %>
+                        <tr>
+                            <td><%= order._id %></td>
+                            <td><%= order.userId %></td>
+                            <td>
+                                <ul>
+                                    <% order.items.forEach(item => { %>
+                                        <li><%= item.name %> - Quantity <%= item.quantity %></li>
+                                    <% }) %>
+                                </ul>
+                            </td>
+                            <td><%= order.address %></td>
+                            <td>₹<%= order.amount.toFixed(2) %></td>
+                            <td><%= order.orderStatus %></td>
+                            <td><%= order.payment ? 'Paid' : 'Pending' %></td>
+                            <td><a class="update-link" href="/dashboard/orders/<%= order._id %>"> Update Order</a></td>
+                        </tr>
+                    <% }) %>
+                <% } else { %>
+                    <tr>
+                        <td colspan="8">No paid orders found.</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </main>
+</body>
+</html>

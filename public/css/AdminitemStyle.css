@@ -1,0 +1,133 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    padding: 20px;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers content horizontally */
+    align-items: center; /* Centers content vertically */
+    min-height: 100vh; /* Ensures the body takes the full viewport height */
+}
+
+/* Heading Styling */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Container */
+form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 400px; /* Ensures the form width is small */
+    width: 100%; /* Ensures responsiveness */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content inside the form */
+}
+
+/* Pizza Name */
+h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Paragraph Styling */
+p {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* Label Styling */
+label {
+    display: block;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+    color: #34495e;
+    text-align: center;
+}
+
+/* Input Styling */
+input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    outline: none;
+    text-align: center;
+}
+
+input[type="number"]:focus {
+    border-color: #3498db;
+}
+
+/* Button Styling */
+button {
+    background-color: #000000;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease;
+    width: 100%; /* Button takes full width of the form */
+}
+
+button:hover {
+    background-color: #ffffff;
+    color: #000000;
+    border: 2px solid black;
+}
+
+/* Divider Styling */
+hr {
+    border: 0;
+    height: 1px;
+    background-color: #ddd;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 15px;
+        max-width: 350px; /* Slightly smaller for mobile */
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 1em;
+    }
+
+    h4, label, p {
+        font-size: 1em;
+    }
+
+    input[type="number"] {
+        padding: 8px;
+        font-size: 1em;
+    }
+}

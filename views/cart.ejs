@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/CartStyle.css">
+    <title>Cart</title>
+</head>
+<body>
+    <h2>Your Cart</h2>
+    <ul>
+        <div> 
+        <% cartItems.forEach(item => { %>
+            <li>
+                <%= item.name %> - Quantity: <%= item.quantity %> - Price: ₹<%= item.price * item.quantity %>
+                <% if (item.custom) { %>
+                    <ul>
+                        <li>Base: <%= item.base %></li>
+                        <li>Sauce: <%= item.sauce %></li>
+                        <li>Cheese: <%= item.cheese %></li>
+                        <li>Veggies: <%= item.veggies.join(', ') %></li>
+                    </ul>
+                <% } %>
+            </li>
+        <% }) %>
+    </div>
+    </ul>
+    
+    <form action="/details" method="GET">
+        <button type="submit">Place Order</button>
+    </form>
+</body>
+</html>

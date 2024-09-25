@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/AdminitemStyle.css">
+    <title>Items Stock</title>
+</head>
+<body>
+    <h2>Items Stock</h2>
+    <a href="/dashboard"><button>Back to Dashboard</button></a> <br>
+    <% pizzas.forEach(pizza => { %>
+        <form action="/dashboard/items/<%= pizza._id %>" method="POST">
+            <h4><%= pizza.name %></h4>
+            <p>Current Quantity: <%= pizza.Count %></p>
+            <label for="count-<%= pizza._id %>">Update Count:</label>
+            <input type="number" id="count-<%= pizza._id %>" name="Count" value="<%= pizza.Count %>" min="0" required>
+            <button type="submit">Update</button>
+        </form>
+        <hr>
+    <% }) %>
+
+</body>
+</html>

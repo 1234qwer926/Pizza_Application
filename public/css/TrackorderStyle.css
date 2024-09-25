@@ -1,0 +1,95 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.order-details {
+    margin-bottom: 40px;
+}
+
+.order-details h3 {
+    font-size: 1.4em;
+}
+
+.order-details p {
+    font-size: 1.1em;
+    margin: 10px 0;
+}
+
+.order-details .status {
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: white;
+    font-weight: bold;
+}
+
+/* Status Color Coding */
+.status.order-placed {
+    background-color: #000000; /* Orange */
+    color: white;
+}
+
+.status.order-prepared {
+    background-color: #3498db; /* Blue */
+}
+
+.status.order-on-the-way {
+    background-color: #f1c40f; /* Yellow */
+}
+
+.status.order-delivered {
+    background-color: #2ecc71; /* Green */
+}
+
+.items-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.item-card {
+    background-color: #ecf0f1;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    width: calc(100% / 2 - 30px);
+    margin-bottom: 20px;
+}
+
+.item-card h4 {
+    color: #3498db;
+    margin-bottom: 10px;
+}
+
+.item-card p {
+    font-size: 1.1em;
+    margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+    .item-card {
+        width: 100%;
+    }
+
+    h2, h3 {
+        font-size: 1.5em;
+    }
+}

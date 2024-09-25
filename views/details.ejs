@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/DetailsStyle.css">
+    <title>Order Details</title>
+</head>
+<body>
+    <h2>Order Details</h2>
+    <% let amount1=0; %>
+    <ul><div>  
+        <% cartItems.forEach(item => { %>
+            <li><%= item.name %> - Quantity: 1 <%= item.price %></li>
+            <% amount1 += item.price; %>
+        <% }) %>
+    </div>
+    </ul>
+    <div> 
+        <form class="pay-form" data-amount=<%= amount1 %>>
+            <input type="text" id="paymentStatus" value="Pay the <%= amount1 %>" readonly>
+            <input type="submit" value="Submit Payment">
+        </form>
+    </div> 
+    <div>   
+    <form id="orderForm" action="/details" method="POST">
+        <label for="address">Delivery Address:</label>
+        <input type="text" id="address" name="address" required>
+        <button type="submit">Proceed to Confirmation</button>
+    </form>
+    </div>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const forms = document.querySelectorAll('.pay-form');
+
+        forms.forEach(function(form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = form.getAttribute('data-amount'); 
+                const paymentStatusInput = form.querySelector('#paymentStatus'); 
+                fetch('/createOrder', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams({
+                        amount: amount * 100
+                    })
+                })
+                .then(response => response.json())
+                .then(res => {
+                    if (res.success) {
+                        const options = {
+                            key: res.key_id,
+                            amount: res.amount,
+                            currency: 'INR',
+                            name: 'Pizza Delivery',
+                            description: 'Payment for your order',
+                            image: 'https://dummyimage.com/600x400/000/fff',
+                            order_id: res.order_id,
+                            handler: function (response) {
+                                alert('Payment Successful');
+                                paymentStatusInput.value = "Payment Successful"; 
+                            },
+                            prefill: {
+                                name: res.name || '',
+                                email: res.email || '',
+                                contact: res.contact || ''
+                            },
+                            theme: { color: '#2300a3' }
+                        };
+                        const rzp = new Razorpay(options);
+                        rzp.open();
+                    } else {
+                        alert(res.msg);
+                    }
+                })
+                .catch(err => console.error('Error:', err));
+            });
+        });
+    });
+    </script>
+</body>
+</html>
